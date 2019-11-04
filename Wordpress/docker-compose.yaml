@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  mariadb:
+    image: mariadb 
+    environment:
+      MYSQL_ROOT_PASSWORD: superSecretPassword
+    ports:
+      - 3306:3306
+    networks:
+      - wpnet
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: cheese 
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpressData01:/var/www/html
+    ports:
+      - 8080:80
+    networks:
+      - wpnet
+volumes:
+  wordpressData01:
+networks:
+  wpnet:
