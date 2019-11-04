@@ -1,0 +1,11 @@
+### Update Cluster Watermark Settings
+```
+curl localhost:9200/_cluster/settings -XPUT -d '{
+   "transient": {
+     "cluster.routing.allocation.disk.watermark.low": "5gb",
+     "cluster.routing.allocation.disk.watermark.high": "3gb",
+     "cluster.routing.allocation.disk.watermark.flood_stage": "1gb",
+     "cluster.info.update.interval": "1m"
+   }
+}' -H 'Content-Type: application/json'
+```
